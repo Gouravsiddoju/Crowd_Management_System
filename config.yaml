@@ -1,0 +1,319 @@
+model: {name: best.pt, imgsz: 1024,
+  conf_threshold: 0.15, iou_threshold: 0.45, device: 0, half_precision: true}
+tracking: {tracker: botsort.yaml, reid_enabled: true, reid_threshold: 0.6, reid_interval: 5,
+  max_age: 120, min_hits: 3}
+filtering: {min_person_height: 10, min_person_width: 10, min_aspect_ratio: 0.5, max_aspect_ratio: 5.0,
+  size_adaptation: true}
+physical_params: {base_footprint_m2: 0.4, buffer_factor_low: 1.2, buffer_factor_high: 2.0}
+performance: {mode: ACCURATE, frame_skip: 3, multi_threading: true, gpu_batch_size: 1,
+  max_fps: 30}
+performance_modes:
+  FAST: {model_name: best.pt, imgsz: 640, frame_skip: 3, conf_threshold: 0.4}
+  BALANCED: {model_name: best.pt, imgsz: 960, frame_skip: 2, conf_threshold: 0.25}
+  ACCURATE: {model_name: best.pt, imgsz: 1280, frame_skip: 1, conf_threshold: 0.2}
+preprocessing: {enabled: true, use_v2_5_enhancer: true, enhancer_temporal: true, enhancer_exposure: true, enhancer_calibrated: true, resize_width: 1280, grayscale: false, roi: null, lighting_normalization: true,
+  motion_blur_handling: false, denoising: true, auto_white_balance: true, stabilization: false}
+counting:
+  mode: both
+  smooth_window: 30
+  save_unique_ids: true
+  zones_enabled: false
+  zones: []
+boundaries:
+  enabled: true
+  default_type: inclusion
+  cameras:
+    1.wmv:
+      type: inclusion
+      polygon:
+      - [496, 440]
+      - [45, 1071]
+      - [1797, 1070]
+      - [1311, 415]
+      - [504, 444]
+      area_sq_meters: 50.0
+      calibration: {front_y: 801, front_area: 161018, back_y: 358, back_area: 48620}
+      exclusions: []
+    2.wmv:
+      type: inclusion
+      polygon:
+      - [433, 122]
+      - [2, 313]
+      - [7, 713]
+      - [1276, 704]
+      - [1258, 376]
+      - [910, 146]
+      - [434, 126]
+      calibration: {front_y: 556, front_area: 46920, back_y: 340, back_area: 21669}
+      exclusions: []
+      area_sq_meters: 80.0
+    3.wmv:
+      type: inclusion
+      polygon:
+      - [765, 498]
+      - [1392, 310]
+      - [1686, 428]
+      - [1890, 600]
+      - [1404, 829]
+      - [1382, 933]
+      - [1446, 1029]
+      - [1461, 1066]
+      - [520, 1065]
+      - [522, 1011]
+      - [807, 942]
+      - [768, 492]
+      area_sq_meters: 55.0
+      calibration: {front_y: 687, front_area: 43375, back_y: 480, back_area: 30464}
+      exclusions:
+      - - [1687, 247]
+        - [1692, 528]
+        - [1776, 595]
+        - [1864, 591]
+        - [1879, 268]
+        - [1825, 229]
+        - [1692, 243]
+    crowd.wmv:
+      type: inclusion
+      polygon:
+      - [693, 522]
+      - [2, 1032]
+      - [6, 1075]
+      - [1911, 1065]
+      - [1912, 634]
+      - [1896, 560]
+      - [754, 487]
+      - [694, 519]
+      area_sq_meters: 100.0
+      calibration: {front_y: 886, front_area: 50568, back_y: 472, back_area: 15312}
+      exclusions:
+      - - [618, 519]
+        - [615, 607]
+        - [668, 618]
+        - [871, 585]
+        - [736, 477]
+        - [620, 511]
+    NR_NDLS_SERVER_2_NR_NDLS_PF16_CPSIDE_PTZ_104_20260102183911000_20260102184011000_High.wmv:
+      type: inclusion
+      polygon:
+      - [393, 1076]
+      - [4, 1068]
+      - [2, 547]
+      - [2, 429]
+      - [596, 315]
+      - [978, 360]
+      - [1249, 374]
+      - [1844, 1071]
+      - [396, 1074]
+      area_sq_meters: 100.0
+      calibration: {front_y: 789, front_area: 98952, back_y: 514, back_area: 13455}
+      exclusions:
+      - - [1048, 366]
+        - [1023, 390]
+        - [1004, 421]
+        - [912, 482]
+        - [795, 624]
+        - [462, 1023]
+        - [414, 1066]
+        - [931, 1066]
+        - [1038, 694]
+        - [1075, 607]
+        - [1083, 534]
+        - [1104, 508]
+        - [1114, 393]
+        - [1053, 363]
+    NR_NDLS_SERVER_2_NR_NDLS_PL11-12_PF16_F_105_20260102183911000_20260102184011000_High.wmv:
+      type: inclusion
+      polygon:
+      - [1914, 1005]
+      - [1434, 217]
+      - [582, 213]
+      - [1, 547]
+      - [4, 1069]
+      - [1916, 1062]
+      - [1917, 1012]
+      calibration: {front_y: 786, front_area: 76074, back_y: 451, back_area: 28202}
+      exclusions:
+      - - [880, 348]
+        - [914, 6]
+        - [790, 0]
+        - [800, 374]
+        - [801, 447]
+        - [912, 560]
+        - [900, 206]
+    NR_NDLS_SERVER_3_NR_NDLS_PF16_PL23,24_F109_20260102184000000_20260102184500000_High.wmv:
+      type: inclusion
+      polygon:
+      - [1467, 349]
+      - [1240, 490]
+      - [693, 630]
+      - [619, 400]
+      - [195, 410]
+      - [8, 553]
+      - [3, 1068]
+      - [1918, 1075]
+      - [1916, 543]
+      - [1474, 346]
+      calibration: {front_y: 597, front_area: 53250, back_y: 555, back_area: 24384}
+      exclusions: []
+    NR_NDLS_SERVER_3_NR_NDLS_PF16_PL30,31_F110_20260102184000000_20260102184500000_High.wmv:
+      type: inclusion
+      polygon:
+      - [1614, 724]
+      - [1249, 576]
+      - [1027, 584]
+      - [836, 496]
+      - [604, 554]
+      - [6, 594]
+      - [0, 1075]
+      - [1910, 1066]
+      - [1912, 669]
+      - [1736, 627]
+      - [1623, 728]
+      calibration: {front_y: 766, front_area: 114072, back_y: 611, back_area: 41184}
+      exclusions: []
+    NR_NDLS_SERVER_3_NR_NDLS_PF16_SADAR_PTZ-111_20260102184000000_20260102184505000_High.wmv:
+      type: inclusion
+      polygon:
+      - [312, 319]
+      - [470, 396]
+      - [1003, 358]
+      - [1082, 248]
+      - [1330, 246]
+      - [1917, 1000]
+      - [1918, 1076]
+      - [1, 1075]
+      - [4, 421]
+      - [306, 324]
+      calibration: {front_y: 753, front_area: 119544, back_y: 233, back_area: 7772}
+      exclusions:
+      - - [680, 78]
+        - [715, 685]
+        - [650, 771]
+        - [651, 802]
+        - [898, 816]
+        - [937, 716]
+        - [883, 680]
+        - [920, 536]
+        - [904, 358]
+        - [872, 297]
+        - [832, 332]
+        - [816, 68]
+        - [676, 75]
+    NR_NDLS_SERVER_3_NR_NDLS_PF16_VIPG_PTZ-112_20260102184000000_20260102184505000_High.wmv:
+      type: inclusion
+      polygon:
+      - [757, 332]
+      - [6, 463]
+      - [301, 1078]
+      - [1916, 1068]
+      - [1914, 948]
+      - [763, 336]
+      calibration: {front_y: 913, front_area: 43941, back_y: 641, back_area: 18952}
+      exclusions:
+      - - [1255, 975]
+        - [1276, 939]
+        - [1268, 746]
+        - [1252, 600]
+        - [1148, 276]
+        - [1030, 296]
+        - [984, 480]
+        - [948, 411]
+        - [976, 297]
+        - [1264, 988]
+        - [1338, 1030]
+        - [1419, 1038]
+        - [1484, 1026]
+        - [1527, 997]
+        - [1533, 931]
+        - [1516, 842]
+        - [1489, 758]
+        - [1482, 716]
+        - [1489, 640]
+        - [1527, 517]
+        - [1574, 446]
+        - [1615, 357]
+        - [1696, 278]
+        - [972, 290]
+        - [294, 492]
+    NR_NDLS_SERVER_3_NR_NDLS_PL14-15_PF16_F-107_20260102184000000_20260102184500000_High.wmv:
+      type: inclusion
+      polygon:
+      - [1044, 246]
+      - [1298, 198]
+      - [1737, 1068]
+      - [7, 1066]
+      - [538, 357]
+      - [1042, 242]
+      calibration: {front_y: 1044, front_area: 45372, back_y: 349, back_area: 28202}
+      exclusions:
+      - - [196, 830]
+        - [200, 948]
+        - [229, 1065]
+        - [3, 1044]
+        - [7, 354]
+        - [572, 196]
+        - [662, 324]
+        - [589, 436]
+        - [537, 388]
+        - [531, 493]
+        - [97, 579]
+        - [195, 822]
+      - - [666, 69]
+        - [774, 97]
+        - [826, 380]
+        - [813, 454]
+        - [865, 484]
+        - [909, 472]
+        - [950, 446]
+        - [973, 422]
+        - [924, 405]
+        - [884, 278]
+        - [864, 152]
+        - [847, 75]
+        - [920, 22]
+        - [927, 4]
+        - [655, 56]
+    NR_NDLS_SERVER_3_NR_NDLS_VIPGATE_AGSIDE_F-106_20260102184000000_20260102184500000_High.wmv:
+      type: inclusion
+      polygon:
+      - [397, 806]
+      - [1274, 740]
+      - [1563, 654]
+      - [1788, 660]
+      - [1910, 764]
+      - [1910, 1068]
+      - [14, 1054]
+      - [140, 918]
+      - [92, 760]
+      - [397, 793]
+      calibration: {front_y: 769, front_area: 96516, back_y: 569, back_area: 14520}
+      exclusions: []
+stream: {type: file, file_path: cr.mp4, rtsp_url: '', rtsp_reconnect_attempts: 5,
+  rtsp_reconnect_delay: 5, rtsp_buffer_size: 30, rtsp_transport: tcp, webcam_id: 0,
+  directory_path: '', directory_pattern: '*.mp4'}
+output:
+  display_preview: true
+  preview_width: 1280
+  preview_height: 720
+  save_video: false
+  video_path: output_counted.mp4
+  video_codec: mp4v
+  save_frames: false
+  frames_path: output_frames/
+  frames_interval: 30
+  show_boxes: true
+  show_track_ids: true
+  show_trajectories: false
+  show_heatmap: false
+  box_color: [0, 255, 0]
+  box_thickness: 2
+  text_size: 0.6
+  text_color: [0, 255, 255]
+analytics: {enabled: true, log_to_console: true, log_to_file: true, log_file: analytics.csv,
+  log_interval: 1, track_occupancy: true, track_peak_occupancy: true, track_flow_rate: true,
+  track_dwell_time: true, track_fps: true, alerts_enabled: false, alert_threshold: 100,
+  alert_sound: false, alert_webhook: ''}
+calibration: {enabled: false, camera_height_meters: 4.0, camera_angle_degrees: 45,
+  fov_horizontal_degrees: 90, reference_person_height_pixels: 200, reference_person_height_meters: 1.7}
+advanced: {debug_mode: false, save_debug_images: false, profile_performance: false,
+  verbose_logging: false}

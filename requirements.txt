@@ -1,0 +1,27 @@
+# Core Dependencies
+opencv-python>=4.8.0
+torch>=2.0.0
+ultralytics>=8.0.0
+numpy>=1.24.0
+
+# Re-Identification (Face Recognition)
+deepface>=0.0.79
+tf-keras>=2.16.0
+scipy>=1.10.0
+
+# Configuration & Data Processing
+pyyaml>=6.0
+pandas>=2.0.0
+
+# Image Enhancement & Preprocessing
+Pillow>=10.0.0
+scikit-image>=0.21.0
+
+# Visualization & Analytics
+matplotlib>=3.7.0
+tqdm>=4.65.0
+
+# Optional: HTTP requests for webhook alerts
+
+# Auto-Segmentation
+transformers>=4.30.0

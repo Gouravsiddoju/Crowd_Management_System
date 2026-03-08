@@ -1,0 +1,19 @@
+# BoT-SORT tracker with custom parameters for maximum ID persistence
+# Optimized for scenarios with people rotating, turning, and moving around
+
+tracker_type: botsort  # Use BoT-SORT algorithm
+
+# Detection thresholds
+track_high_thresh: 0.3  # Lower threshold to maintain tracks even with lower confidence
+track_low_thresh: 0.1   # Very low to keep tracking through occlusions
+new_track_thresh: 0.5   # Lower threshold - accept tracks more easily
+match_thresh: 0.8       # Slightly lower to allow matching despite minor varying appearance
+track_buffer: 90        # Keep lost tracks for 90 frames (~3 seconds at 30fps)
+fuse_score: True        # Use both detection and tracking scores
+
+# Motion prediction
+# BoT-SORT uses Kalman filter with camera motion compensation
+cmc_method: sparseOptFlow  # Camera motion compensation method
+
+# Other parameters
+mot20: False            # Set to True if using MOT20 dataset format

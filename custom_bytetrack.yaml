@@ -1,0 +1,10 @@
+# Custom ByteTrack settings for Maximum Persistence
+# Designed to reduce "ID Switching" and separate counts
+
+tracker_type: bytetrack  # tracker type, ['bytetrack', 'botsort']
+track_high_thresh: 0.25  # threshold for the first association
+track_low_thresh: 0.1    # threshold for the second association
+new_track_thresh: 0.6    # threshold for init new track if the detection does not match any tracks
+track_buffer: 120        # buffer to calculate the time when to remove tracks (120 frames = ~5s at 25fps)
+match_thresh: 0.85       # threshold for matching tracks
+fuse_score: True         # Whether to fuse confidence score with IoU/Motion

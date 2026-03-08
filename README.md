@@ -18,7 +18,7 @@ Unlike standard detection pipelines, this system integrates a state-of-the-art *
   * **HDRNet Calibrated Exposure**: Neural bilateral grid transformation that brightens ultra-dark areas without blowing out highlights.
   * **FastDVDnet Denoising**: Spatio-temporal CNN that removes ISO grain dynamically across frame sequences.
   * **ContourNet Sharpening**: Deep neural network for edge-enhancement that selectively restores detail on blurry pedestrian contours.
-* **Custom Detection Core (YOLOv8)**: Utilizes a heavily optimized `YOLOv8` architecture (`best.pt` weights) trained specifically for extreme density head/person detection in crowds.
+* **Custom Detection Core (YOLOv8)**: Utilizes a heavily optimized `YOLOv8` architecture (`best.pt` weights) explicitly trained on the **CrowdHuman Dataset** for **Head Detection** in extreme density crowds, overcoming body occlusion issues.
 * **Advanced Movement Tracking (BoT-SORT & ByteTrack)**: Configurable deep tracking engines utilizing **Kalman filtering** for precise velocity and trajectory prediction. Handles severe optical occlusions (e.g., people walking behind pillars) by projecting missing frames and assigning persistent tracking IDs.
 * **Cross-Camera Re-Identification (ReID)**: Utilizes **DeepFace (`Facenet512`)** facial embeddings blended with HSV color histogram logic. Applies a Union-Find clustering algorithm to match and track identities seamlessly across entirely different camera angles.
 * **Polygon-based Spatial Occupancy**: Hardcode inclusion zones and exclusion zones per-camera to accurately compute effective physical area vs capacity limits.

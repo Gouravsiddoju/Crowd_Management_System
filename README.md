@@ -13,14 +13,15 @@ Unlike standard detection pipelines, this system integrates a state-of-the-art *
 
 ## 🌟 Key Features
 
-* **Advanced Vision Enhancement (v2.5)**: GPU/CPU-accelerated pre-processing pipeline including:
-  * **Temporal Stabilization**: Reduces heavy camera shake & flicker.
-  * **HDRNet Calibrated Exposure**: Brightens ultra-dark areas without blowing out highlights.
-  * **FastDVDnet Denoising**: Removes ISO grain natively.
-  * **ContourNet Sharpening**: Enhances edge detail on blurry pedestrian contours.
-* **Custom YOLO Detection**: Optimized `best.pt` head/person tracker designed specifically for dense crowds.
-* **Advanced Re-Identification (ReID)**: Utilizes `DeepFace` embeddings and HSV histograms via Union-Find clustering to match and track identities across multiple camera angles.
-* **Polygon-based Spatial Occupancy**: Hardcode inclusion zones and exclusion zones per-camera to accurately compute effective physical area vs capacity.
+* **Advanced Deep Learning Vision Enhancement (v2.5)**: GPU/CPU-accelerated pre-processing pipeline including:
+  * **Temporal Stabilization**: EMA-based (Exponential Moving Average) buffer mapping to reduce camera shake & frame flicker.
+  * **HDRNet Calibrated Exposure**: Neural bilateral grid transformation that brightens ultra-dark areas without blowing out highlights.
+  * **FastDVDnet Denoising**: Spatio-temporal CNN that removes ISO grain dynamically across frame sequences.
+  * **ContourNet Sharpening**: Deep neural network for edge-enhancement that selectively restores detail on blurry pedestrian contours.
+* **Custom Detection Core (YOLOv8)**: Utilizes a heavily optimized `YOLOv8` architecture (`best.pt` weights) trained specifically for extreme density head/person detection in crowds.
+* **Advanced Movement Tracking (BoT-SORT & ByteTrack)**: Configurable deep tracking engines utilizing **Kalman filtering** for precise velocity and trajectory prediction. Handles severe optical occlusions (e.g., people walking behind pillars) by projecting missing frames and assigning persistent tracking IDs.
+* **Cross-Camera Re-Identification (ReID)**: Utilizes **DeepFace (`Facenet512`)** facial embeddings blended with HSV color histogram logic. Applies a Union-Find clustering algorithm to match and track identities seamlessly across entirely different camera angles.
+* **Polygon-based Spatial Occupancy**: Hardcode inclusion zones and exclusion zones per-camera to accurately compute effective physical area vs capacity limits.
 * **Flow & Analytics Engine**: Live metrics on flow rates, average dwell times, and real-time GPU performance exported automatically to JSON/CSV for web dashboard consumption.
 * **Multi-Camera Sync**: Concurrently run unlimited `rtsp` or video file feeds and generate one localized global tracker.
 
@@ -29,11 +30,12 @@ Unlike standard detection pipelines, this system integrates a state-of-the-art *
 ## 🏗️ System Architecture
 
 1. **Input Layer**: `StreamHandler` captures `.mp4`, `.wmv`, or `rtsp://` streams utilizing localized queuing buffers to prevent timeouts.
-2. **Preprocessing Layer**: Frames are fed into the v2.5 Enhancer or Legacy OpenCV pipeline depending on your configuration.
-3. **Detection Core**: YOLO draws high-confidence bounding boxes, feeding them into `BoT-SORT` for Kalman filtering and ID assignment.
-4. **Spatial Math Layer**: `ZoneCounter` identifies if a tracked human is inside an actionable zone and updates the capacity.
-5. **Multi-Camera Sync**: `CrossCameraMatcher` de-duplicates identical humans seen across different cameras.
-6. **Analytics Engine**: Results are logged, and overlaid video streams are broadcast via a REST/Flask server for real-time frontend viewing.
+2. **Preprocessing Layer**: Frames are fed into the v2.5 Enhancer (HDRNet, FastDVDnet, ContourNet) or Legacy OpenCV pipeline depending on your configuration.
+3. **Detection Core**: YOLOv8 draws high-confidence bounding boxes, feeding them into the custom `TrackManager`.
+4. **Movement & Trajectory Tracker**: Utilizes `BoT-SORT` / `ByteTrack` logic with Kalman filtering to maintain temporal identity across frames, calculating velocity and predicting future trajectory positions when pedestrians are temporarily hidden.
+5. **Spatial Math Layer**: `ZoneCounter` identifies if a tracked human is inside an actionable zone and updates the capacity.
+6. **Multi-Camera Sync**: `CrossCameraMatcher` de-duplicates identical humans seen across different cameras.
+7. **Analytics Engine**: Results are logged, and overlaid video streams are broadcast via a REST/Flask server for real-time frontend viewing.
 
 ---
 
